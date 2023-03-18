@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,15 +13,97 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="AerisWeatherCodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="MKMapView">
+                    <view key="view" contentMode="scaleToFill" id="sOV-VL-OkU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="MKMapView">
+                                <rect key="frame" x="-2" y="-1" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="gIx-7E-god"/>
+                                </connections>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A07-x8-hRu" userLabel="Radar Button">
+                                <rect key="frame" x="336" y="74" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="3fM-D9-Ioa"/>
+                                    <constraint firstAttribute="height" constant="40" id="OqZ-W4-9pP"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
+                                    <imageReference key="image" image="smallcircle.filled.circle" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="layerToggleButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aVO-vQ-UEy"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPK-NV-vxP" userLabel="Alerts Button">
+                                <rect key="frame" x="335" y="130" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="7Zg-DS-eWk"/>
+                                    <constraint firstAttribute="width" constant="40" id="yD4-Nj-87K"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
+                                    <imageReference key="image" image="exclamationmark.triangle.fill" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="layerToggleButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KfR-ug-6TA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-s0-rjf" userLabel="Storm Reports Points Button">
+                                <rect key="frame" x="335" y="186" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="kRm-Bg-T5h"/>
+                                    <constraint firstAttribute="width" constant="40" id="lAu-7E-1Cv"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
+                                    <imageReference key="image" image="aqi.medium" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="layerToggleButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Tm-18-3yt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1m-lu-wcl" userLabel="Storm Reports Heatmap Button">
+                                <rect key="frame" x="335" y="242" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="JBJ-M0-eyX"/>
+                                    <constraint firstAttribute="width" constant="40" id="fyc-Au-dCp"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" cornerStyle="capsule">
+                                    <imageReference key="image" image="thermometer.high" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="layerToggleButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XCD-on-7En"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zie-cV-6rb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="delegate" destination="BYZ-38-t0r" id="gIx-7E-god"/>
-                        </connections>
+                        <constraints>
+                            <constraint firstItem="Nav-s0-rjf" firstAttribute="top" secondItem="PPK-NV-vxP" secondAttribute="bottom" constant="16" id="5PG-l3-w1H"/>
+                            <constraint firstItem="Nav-s0-rjf" firstAttribute="trailing" secondItem="PPK-NV-vxP" secondAttribute="trailing" id="87o-af-Kbb"/>
+                            <constraint firstItem="C1m-lu-wcl" firstAttribute="top" secondItem="Nav-s0-rjf" secondAttribute="bottom" constant="16" id="EgY-gZ-UMo"/>
+                            <constraint firstItem="A07-x8-hRu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="Q9G-5M-RH6"/>
+                            <constraint firstItem="PPK-NV-vxP" firstAttribute="top" secondItem="A07-x8-hRu" secondAttribute="bottom" constant="16" id="RUq-sQ-MXg"/>
+                            <constraint firstItem="A07-x8-hRu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="gQq-yt-Imb"/>
+                            <constraint firstItem="PPK-NV-vxP" firstAttribute="trailing" secondItem="A07-x8-hRu" secondAttribute="trailing" id="jLJ-Fi-fEk"/>
+                            <constraint firstItem="C1m-lu-wcl" firstAttribute="trailing" secondItem="Nav-s0-rjf" secondAttribute="trailing" id="zVg-WN-Wq1"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="alertsButton" destination="PPK-NV-vxP" id="ZuZ-Tf-Zcq"/>
+                        <outlet property="mapView" destination="8bC-Xf-vdC" id="lLa-WE-JJ9"/>
+                        <outlet property="radarButton" destination="A07-x8-hRu" id="yI4-Vr-7Ja"/>
+                        <outlet property="stormReportsHeatmapButton" destination="C1m-lu-wcl" id="Ac3-UX-aEX"/>
+                        <outlet property="stormReportsPointsButton" destination="Nav-s0-rjf" id="O9p-ss-7qF"/>
+                        <outlet property="view" destination="sOV-VL-OkU" id="mjB-yC-eHw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -28,6 +111,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="aqi.medium" catalog="system" width="128" height="120"/>
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
+        <image name="smallcircle.filled.circle" catalog="system" width="128" height="123"/>
+        <image name="thermometer.high" catalog="system" width="80" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -12,20 +12,23 @@ import MapKit
 
 class MapViewController : UIViewController, MKMapViewDelegate
 {
-	var mapView: MKMapView! {
-		guard let view else { return nil }
-		guard let mapView = view as? MKMapView else {
-			fatalError("\(Self.self) requires its `view` outlet be connected to a `\(MKMapView.self)` instance.")
-		}
-		return mapView
-	}
+	@IBOutlet var mapView: MKMapView!
+	
+	@IBOutlet var radarButton: UIButton!
+	@IBOutlet var alertsButton: UIButton!
+	@IBOutlet var stormReportsPointsButton: UIButton!
+	@IBOutlet var stormReportsHeatmapButton: UIButton!
 	
 	
 	override func viewDidLoad()
 	{
-		_ = self.mapView // pre-empt typecast check
-		
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
+	}
+	
+	
+	@IBAction func layerToggleButtonPressed(_ senderButton: UIButton)
+	{
+		print("\(senderButton) pressed")
 	}
 }
