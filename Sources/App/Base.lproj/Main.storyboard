@@ -13,21 +13,18 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="AerisWeatherCodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sOV-VL-OkU">
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOV-VL-OkU">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="MKMapView">
-                                <rect key="frame" x="-2" y="-1" width="393" height="852"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bC-Xf-vdC" customClass="MKMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="gIx-7E-god"/>
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A07-x8-hRu" userLabel="Radar Button">
-                                <rect key="frame" x="336" y="74" width="40" height="40"/>
+                                <rect key="frame" x="337" y="75" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="3fM-D9-Ioa"/>
                                     <constraint firstAttribute="height" constant="40" id="OqZ-W4-9pP"/>
@@ -41,7 +38,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPK-NV-vxP" userLabel="Alerts Button">
-                                <rect key="frame" x="335" y="130" width="40" height="40"/>
+                                <rect key="frame" x="337" y="131" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="7Zg-DS-eWk"/>
                                     <constraint firstAttribute="width" constant="40" id="yD4-Nj-87K"/>
@@ -55,7 +52,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nav-s0-rjf" userLabel="Storm Reports Points Button">
-                                <rect key="frame" x="335" y="186" width="40" height="40"/>
+                                <rect key="frame" x="337" y="187" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="kRm-Bg-T5h"/>
                                     <constraint firstAttribute="width" constant="40" id="lAu-7E-1Cv"/>
@@ -69,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C1m-lu-wcl" userLabel="Storm Reports Heatmap Button">
-                                <rect key="frame" x="335" y="242" width="40" height="40"/>
+                                <rect key="frame" x="337" y="243" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="JBJ-M0-eyX"/>
                                     <constraint firstAttribute="width" constant="40" id="fyc-Au-dCp"/>
@@ -89,10 +86,14 @@
                             <constraint firstItem="Nav-s0-rjf" firstAttribute="top" secondItem="PPK-NV-vxP" secondAttribute="bottom" constant="16" id="5PG-l3-w1H"/>
                             <constraint firstItem="Nav-s0-rjf" firstAttribute="trailing" secondItem="PPK-NV-vxP" secondAttribute="trailing" id="87o-af-Kbb"/>
                             <constraint firstItem="C1m-lu-wcl" firstAttribute="top" secondItem="Nav-s0-rjf" secondAttribute="bottom" constant="16" id="EgY-gZ-UMo"/>
-                            <constraint firstItem="A07-x8-hRu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-16" id="Q9G-5M-RH6"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="bottom" secondItem="sOV-VL-OkU" secondAttribute="bottom" id="LX9-SM-oBJ"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="left" secondItem="sOV-VL-OkU" secondAttribute="left" id="MhD-tF-Lv5"/>
+                            <constraint firstItem="A07-x8-hRu" firstAttribute="trailing" secondItem="zie-cV-6rb" secondAttribute="trailing" constant="-16" id="Q9G-5M-RH6"/>
                             <constraint firstItem="PPK-NV-vxP" firstAttribute="top" secondItem="A07-x8-hRu" secondAttribute="bottom" constant="16" id="RUq-sQ-MXg"/>
-                            <constraint firstItem="A07-x8-hRu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="gQq-yt-Imb"/>
+                            <constraint firstItem="A07-x8-hRu" firstAttribute="top" secondItem="zie-cV-6rb" secondAttribute="top" constant="16" id="gQq-yt-Imb"/>
                             <constraint firstItem="PPK-NV-vxP" firstAttribute="trailing" secondItem="A07-x8-hRu" secondAttribute="trailing" id="jLJ-Fi-fEk"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="top" secondItem="sOV-VL-OkU" secondAttribute="top" id="u5o-fg-yqJ"/>
+                            <constraint firstItem="8bC-Xf-vdC" firstAttribute="right" secondItem="sOV-VL-OkU" secondAttribute="right" id="vV0-Lb-fnp"/>
                             <constraint firstItem="C1m-lu-wcl" firstAttribute="trailing" secondItem="Nav-s0-rjf" secondAttribute="trailing" id="zVg-WN-Wq1"/>
                         </constraints>
                     </view>
@@ -107,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="-34"/>
+            <point key="canvasLocation" x="130.53435114503816" y="-34.507042253521128"/>
         </scene>
     </scenes>
     <resources>
