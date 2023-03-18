@@ -40,7 +40,7 @@
 		FAD3B80929C5D3110075A72B = {
 			isa = PBXGroup;
 			children = (
-				FAD3B81429C5D3120075A72B /* AerisWeatherCodingChallenge */,
+				FAD3B82929C5D8500075A72B /* Sources */,
 				FAD3B81329C5D3120075A72B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,7 +53,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FAD3B81429C5D3120075A72B /* AerisWeatherCodingChallenge */ = {
+		FAD3B81429C5D3120075A72B /* App */ = {
 			isa = PBXGroup;
 			children = (
 				FAD3B81529C5D3120075A72B /* AppDelegate.swift */,
@@ -64,15 +64,23 @@
 				FAD3B82029C5D3160075A72B /* LaunchScreen.storyboard */,
 				FAD3B82329C5D3160075A72B /* Info.plist */,
 			);
-			path = AerisWeatherCodingChallenge;
+			path = App;
+			sourceTree = "<group>";
+		};
+		FAD3B82929C5D8500075A72B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				FAD3B81429C5D3120075A72B /* App */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FAD3B81129C5D3120075A72B /* AerisWeatherCodingChallenge */ = {
+		FAD3B81129C5D3120075A72B /* App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FAD3B82629C5D3160075A72B /* Build configuration list for PBXNativeTarget "AerisWeatherCodingChallenge" */;
+			buildConfigurationList = FAD3B82629C5D3160075A72B /* Build configuration list for PBXNativeTarget "App" */;
 			buildPhases = (
 				FAD3B80E29C5D3120075A72B /* Sources */,
 				FAD3B80F29C5D3120075A72B /* Frameworks */,
@@ -82,7 +90,7 @@
 			);
 			dependencies = (
 			);
-			name = AerisWeatherCodingChallenge;
+			name = App;
 			productName = AerisWeatherCodingChallenge;
 			productReference = FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -115,7 +123,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FAD3B81129C5D3120075A72B /* AerisWeatherCodingChallenge */,
+				FAD3B81129C5D3120075A72B /* App */,
 			);
 		};
 /* End PBXProject section */
@@ -289,7 +297,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UQQE2H6P34;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AerisWeatherCodingChallenge/Info.plist;
+				INFOPLIST_FILE = Sources/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -301,7 +309,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.slippyd.AerisWeatherCodingChallenge;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AerisWeatherCodingChallenge;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -317,7 +325,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = UQQE2H6P34;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AerisWeatherCodingChallenge/Info.plist;
+				INFOPLIST_FILE = Sources/App/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -329,7 +337,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.slippyd.AerisWeatherCodingChallenge;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AerisWeatherCodingChallenge;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -348,7 +356,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FAD3B82629C5D3160075A72B /* Build configuration list for PBXNativeTarget "AerisWeatherCodingChallenge" */ = {
+		FAD3B82629C5D3160075A72B /* Build configuration list for PBXNativeTarget "App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FAD3B82729C5D3160075A72B /* Debug */,
