@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81529C5D3120075A72B /* AppDelegate.swift */; };
 		FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81729C5D3120075A72B /* SceneDelegate.swift */; };
-		FAD3B81A29C5D3120075A72B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* ViewController.swift */; };
+		FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* MapViewController.swift */; };
 		FAD3B81D29C5D3120075A72B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD3B81B29C5D3120075A72B /* Main.storyboard */; };
 		FAD3B81F29C5D3160075A72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD3B81E29C5D3160075A72B /* Assets.xcassets */; };
 		FAD3B82229C5D3160075A72B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD3B82029C5D3160075A72B /* LaunchScreen.storyboard */; };
@@ -20,7 +20,7 @@
 		FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AerisWeatherCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD3B81529C5D3120075A72B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD3B81729C5D3120075A72B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FAD3B81929C5D3120075A72B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAD3B81929C5D3120075A72B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		FAD3B81C29C5D3120075A72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAD3B81E29C5D3160075A72B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAD3B82129C5D3160075A72B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 				FA5BDC1529C5DA5D000FC0AF /* App.entitlements */,
 				FAD3B81529C5D3120075A72B /* AppDelegate.swift */,
 				FAD3B81729C5D3120075A72B /* SceneDelegate.swift */,
-				FAD3B81929C5D3120075A72B /* ViewController.swift */,
+				FAD3B81929C5D3120075A72B /* MapViewController.swift */,
 				FAD3B81B29C5D3120075A72B /* Main.storyboard */,
 				FAD3B81E29C5D3160075A72B /* Assets.xcassets */,
 				FAD3B82029C5D3160075A72B /* LaunchScreen.storyboard */,
@@ -148,7 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FAD3B81A29C5D3120075A72B /* ViewController.swift in Sources */,
+				FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */,
 				FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */,
 				FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */,
 			);
