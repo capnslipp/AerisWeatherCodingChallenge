@@ -10,61 +10,20 @@ import MapKit
 
 
 
-class MapViewController : UIViewController, MKMapViewDelegate
+class MapViewController : UIViewController
 {
-	enum LayerState {
-		case radar
-		case alerts
-		case stormReportsPoints
-		case stormReportsHeatmap
-		
-		static let `default`: Self = .radar
-	}
-	var layerState: LayerState = .default
-	
-	
-	@IBOutlet var mapView: MKMapView!
+	@IBOutlet var mapView: WeatherMapView!
 	
 	@IBOutlet var radarButton: UIButton!
 	@IBOutlet var alertsButton: UIButton!
 	@IBOutlet var stormReportsPointsButton: UIButton!
 	@IBOutlet var stormReportsHeatmapButton: UIButton!
 	
-	lazy var allLayerToggleButtons: [UIButton] = [
-		self.radarButton,
-		self.alertsButton,
-		self.stormReportsPointsButton,
-		self.stormReportsHeatmapButton,
-	]
-	
-	func layerToggleButtonFor(layerState: LayerState) -> UIButton {
-		switch layerState {
-			case .radar:
-				return self.radarButton
-			case .alerts:
-				return self.alertsButton
-			case .stormReportsPoints:
-				return self.stormReportsPointsButton
-			case .stormReportsHeatmap:
-				return self.stormReportsHeatmapButton
-		}
+	typealias LayerState = WeatherMapView.LayerState
+	var layerState: LayerState {
+		get { self.mapView.layerState }
+		set { self.mapView.layerState = newValue }
 	}
-	
-	func layerStateFor(layerToggleButton: UIButton) -> LayerState? {
-		switch layerToggleButton {
-			case self.radarButton:
-				return .radar
-			case self.alertsButton:
-				return .alerts
-			case self.stormReportsPointsButton:
-				return .stormReportsPoints
-			case self.stormReportsHeatmapButton:
-				return .stormReportsHeatmap
-			
-			default: return nil
-		}
-	}
-	
 	
 	
 	
@@ -79,7 +38,7 @@ class MapViewController : UIViewController, MKMapViewDelegate
 	
 	@IBAction func layerToggleButtonPressed(_ senderButton: UIButton)
 	{
-		guard let layerState = layerStateFor(layerToggleButton: senderButton) else {
+		guard let layerState = layerState(forLayerToggleButton: senderButton) else {
 			print("Warning: \(#function) ignoring received action from unhandled button \(senderButton).")
 			return
 		}
@@ -90,12 +49,54 @@ class MapViewController : UIViewController, MKMapViewDelegate
 	
 	func selectLayerToggleButton(forLayerState: LayerState)
 	{
-		let selectedButton = layerToggleButtonFor(layerState: layerState)
+		let selectedButton = layerToggleButton(forLayerState: self.layerState)
 		let otherButtons = self.allLayerToggleButtons.filter{ $0 != selectedButton }
 		
 		// This could also be accomplished via `UIButton`'s `.changesSelectionAsPrimaryAction`, but we'd still need to un-select the other buttons.
 		// In general I prefer to have discrete state transitions all in one place, rather than two systems doing the same thing (can cause state desync). 
 		selectedButton.isSelected = true
 		otherButtons.forEach{ $0.isSelected = false }
+	}
+}
+
+
+/// `UIButton` ↔ `WeatherMapView.LayerState` Convenience Methods
+extension MapViewController
+{
+	var allLayerToggleButtons: [UIButton] {
+		[
+			self.radarButton,
+			self.alertsButton,
+			self.stormReportsPointsButton,
+			self.stormReportsHeatmapButton,
+		]
+	}
+	
+	func layerToggleButton(forLayerState state: LayerState) -> UIButton {
+		switch state {
+			case .radar:
+				return self.radarButton
+			case .alerts:
+				return self.alertsButton
+			case .stormReportsPoints:
+				return self.stormReportsPointsButton
+			case .stormReportsHeatmap:
+				return self.stormReportsHeatmapButton
+		}
+	}
+	
+	func layerState(forLayerToggleButton button: UIButton) -> LayerState? {
+		switch button {
+			case self.radarButton:
+				return .radar
+			case self.alertsButton:
+				return .alerts
+			case self.stormReportsPointsButton:
+				return .stormReportsPoints
+			case self.stormReportsHeatmapButton:
+				return .stormReportsHeatmap
+			
+			default: return nil
+		}
 	}
 }
