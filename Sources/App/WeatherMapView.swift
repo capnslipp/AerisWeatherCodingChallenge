@@ -30,6 +30,20 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	
 	var mapView: MKMapView!
 	
+	var inDarkMode: Bool { self.traitCollection.userInterfaceStyle == .dark }
+	
+	lazy var baseOverlay: MKTileOverlay = {
+		let apiKey = "576c3abd-74af-419b-91d6-847b6e17ce38"
+		let styleID = self.inDarkMode ? "alidade_smooth_dark" : "alidade_smooth"
+		let overlay = MKTileOverlay(urlTemplate: "https://tiles.stadiamaps.com/tiles/\(styleID)/{z}/{x}/{y}.png?api_key=\(apiKey)")
+		overlay.canReplaceMapContent = true
+		return overlay
+	}()
+	lazy var baseOverlayRenderer: MKTileOverlayRenderer = {
+		let renderer = MKTileOverlayRenderer(tileOverlay: self.baseOverlay)
+		return renderer
+	}()
+	
 	lazy var radarLayerOverlay: MKTileOverlay = {
 		let clientID = "mDDQDYPbqq4PK43usr9HJ"
 		let clientSecret = "nEyhFtwTSaCkBDKLpppDEOePPh1qw5qaeyuxYal6"
@@ -40,7 +54,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	lazy var radarLayerOverlayRenderer: MKTileOverlayRenderer = {
 		let renderer = MKTileOverlayRenderer(tileOverlay: self.radarLayerOverlay)
 		#if !targetEnvironment(macCatalyst)
-			renderer.blendMode = .multiply
+			renderer.blendMode = self.inDarkMode ? .screen : .multiply
 		#endif
 		return renderer
 	}()
@@ -66,6 +80,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		super.init(frame: frame)
 		
 		setUpSubviews()
+		setUpBaseOverlay()
 		setUpOverlaysForCurrentLayerState()
 	}
 	
@@ -75,6 +90,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		super.init(coder: coder)
 		
 		setUpSubviews()
+		setUpBaseOverlay()
 		setUpOverlaysForCurrentLayerState()
 	}
 	
@@ -97,18 +113,27 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		self.mapView = mapView
 	}
 	
+	func setUpBaseOverlay()
+	{
+		self.mapView.addOverlay(self.baseOverlay, level: .aboveLabels)
+	}
+	
 	func setUpOverlaysForCurrentLayerState()
 	{
 		self.mapView.removeOverlays(self.allLayerOverlays)
 		
 		if let newOverlay = layerOverlay(forLayerState: self.layerState) {
 			// TODO: Remove `if let` once we have all states handled.
-			self.mapView.addOverlay(newOverlay, level: .aboveRoads)
+			self.mapView.addOverlay(newOverlay, level: .aboveLabels)
 		}
 	}
 	
 	func mapView(_: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
 	{
+		if (overlay as? MKTileOverlay) == self.baseOverlay {
+			return self.baseOverlayRenderer
+		}
+		
 		switch layerState(forLayerOverlay: overlay) {
 			case .radar:
 				return self.radarLayerOverlayRenderer
