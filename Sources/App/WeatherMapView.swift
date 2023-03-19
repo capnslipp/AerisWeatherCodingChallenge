@@ -45,6 +45,21 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		return renderer
 	}()
 	
+	lazy var alertsLayerOverlay: MKTileOverlay = {
+		let clientID = "mDDQDYPbqq4PK43usr9HJ"
+		let clientSecret = "nEyhFtwTSaCkBDKLpppDEOePPh1qw5qaeyuxYal6"
+		let overlay = MKTileOverlay(urlTemplate: "https://maps.aerisapi.com/\(clientID)_\(clientSecret)/alerts/{z}/{x}/{y}/current.png")
+		overlay.canReplaceMapContent = false
+		return overlay
+	}()
+	lazy var alertsLayerOverlayRenderer: MKTileOverlayRenderer = {
+		let renderer = MKTileOverlayRenderer(tileOverlay: self.alertsLayerOverlay)
+		#if !targetEnvironment(macCatalyst)
+			renderer.blendMode = self.inDarkMode ? .screen : .multiply
+		#endif
+		return renderer
+	}()
+	
 	
 	public override init(frame: CGRect)
 	{
@@ -97,6 +112,8 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		switch layerState(forLayerOverlay: overlay) {
 			case .radar:
 				return self.radarLayerOverlayRenderer
+			case .alerts:
+				return self.alertsLayerOverlayRenderer
 			
 			default:
 				print("Warning: \(#function) ignoring unhandled overlay \(overlay).")
@@ -113,6 +130,7 @@ extension WeatherMapView
 	var allLayerOverlays: [MKOverlay] {
 		[
 			self.radarLayerOverlay,
+			self.alertsLayerOverlay,
 		]
 	}
 	
@@ -120,6 +138,8 @@ extension WeatherMapView
 		switch state {
 			case .radar:
 				return self.radarLayerOverlay
+			case .alerts:
+				return self.alertsLayerOverlay
 			
 			default: return nil
 		}
@@ -129,6 +149,8 @@ extension WeatherMapView
 		switch overlay {
 			case let tileOverlay as MKTileOverlay where tileOverlay == self.radarLayerOverlay:
 				return .radar
+			case let tileOverlay as MKTileOverlay where tileOverlay == self.alertsLayerOverlay:
+				return .alerts
 			
 			default: return nil
 		}
