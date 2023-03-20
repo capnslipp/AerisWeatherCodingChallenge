@@ -28,7 +28,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	}
 	
 	
-	var mapView: MKMapView!
+	private var _mkMapView: MKMapView!
 	
 	var inDarkMode: Bool { self.traitCollection.userInterfaceStyle == .dark }
 	
@@ -96,39 +96,41 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	
 	func setUpSubviews()
 	{
-		let mapView = MKMapView()
-		mapView.delegate = self
-		
-		mapView.translatesAutoresizingMaskIntoConstraints = false
-		addSubview(mapView)
-		NSLayoutConstraint.activate(
-			[
-				"H:|-0-[view]-0-|",
-				"V:|-0-[view]-0-|"
-			].flatMap{
-				NSLayoutConstraint.constraints(withVisualFormat: $0, options: [ .directionLeftToRight ], metrics: nil, views: [ "view": mapView ])
-			}
-		)
-		
-		self.mapView = mapView
+		_mkMapView = {
+			let view = MKMapView()
+			view.delegate = self
+			
+			view.translatesAutoresizingMaskIntoConstraints = false
+			addSubview(view)
+			NSLayoutConstraint.activate(
+				[
+					"H:|-0-[view]-0-|",
+					"V:|-0-[view]-0-|"
+				].flatMap{
+					NSLayoutConstraint.constraints(withVisualFormat: $0, options: [ .directionLeftToRight ], metrics: nil, views: [ "view": view ])
+				}
+			)
+			
+			return view
+		}()
 	}
 	
 	func setUpBaseOverlay()
 	{
-		self.mapView.addOverlay(self.baseOverlay, level: .aboveLabels)
+		_mkMapView.addOverlay(self.baseOverlay, level: .aboveLabels)
 	}
 	
 	func setUpOverlaysForCurrentLayerState()
 	{
-		self.mapView.removeOverlays(self.allLayerOverlays)
+		_mkMapView.removeOverlays(self.allLayerOverlays)
 		
 		if let newOverlay = layerOverlay(forLayerState: self.layerState) {
 			// TODO: Remove `if let` once we have all states handled.
-			self.mapView.addOverlay(newOverlay, level: .aboveLabels)
+			_mkMapView.addOverlay(newOverlay, level: .aboveLabels)
 		}
 		
 		if case .stormReportsPoints = self.layerState {
-			let stormReports = StormReports(region: self.mapView.region)
+			let stormReports = StormReports(region: _mkMapView.region)
 			print("stormReports.reports.count: \(stormReports.reports.count)")
 		}
 	}
