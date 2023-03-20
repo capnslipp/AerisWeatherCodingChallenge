@@ -1,0 +1,3 @@
+[submodule "Libraries/DTMHeatmap"]
+	path = Libraries/DTMHeatmap
+	url = https://github.com/dataminr/DTMHeatmap.git
