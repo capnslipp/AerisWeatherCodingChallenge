@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		FA57E6C229C6236100480530 /* WeatherMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA57E6C129C6236100480530 /* WeatherMapView.swift */; };
+		FA788E1A29C7B1A30093F44F /* StormReports.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E1929C7B1A30093F44F /* StormReports.swift */; };
+		FA788E1E29C7B7520093F44F /* MKCoordinateRegionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E1D29C7B7520093F44F /* MKCoordinateRegionExtensions.swift */; };
+		FA788E2029C7D8350093F44F /* StormReports.Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E1F29C7D8350093F44F /* StormReports.Report.swift */; };
 		FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81529C5D3120075A72B /* AppDelegate.swift */; };
 		FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81729C5D3120075A72B /* SceneDelegate.swift */; };
 		FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* MapViewController.swift */; };
@@ -19,6 +22,9 @@
 /* Begin PBXFileReference section */
 		FA57E6C129C6236100480530 /* WeatherMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapView.swift; sourceTree = "<group>"; };
 		FA5BDC1529C5DA5D000FC0AF /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
+		FA788E1929C7B1A30093F44F /* StormReports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormReports.swift; sourceTree = "<group>"; };
+		FA788E1D29C7B7520093F44F /* MKCoordinateRegionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegionExtensions.swift; sourceTree = "<group>"; };
+		FA788E1F29C7D8350093F44F /* StormReports.Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormReports.Report.swift; sourceTree = "<group>"; };
 		FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AerisWeatherCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD3B81529C5D3120075A72B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD3B81729C5D3120075A72B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +46,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA788E1C29C7B73A0093F44F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA788E1D29C7B7520093F44F /* MKCoordinateRegionExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		FAD3B80929C5D3110075A72B = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +73,7 @@
 		FAD3B81429C5D3120075A72B /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FA788E1C29C7B73A0093F44F /* Extensions */,
 				FA5BDC1529C5DA5D000FC0AF /* App.entitlements */,
 				FAD3B81529C5D3120075A72B /* AppDelegate.swift */,
 				FAD3B81729C5D3120075A72B /* SceneDelegate.swift */,
@@ -68,6 +83,8 @@
 				FAD3B82029C5D3160075A72B /* LaunchScreen.storyboard */,
 				FAD3B82329C5D3160075A72B /* Info.plist */,
 				FA57E6C129C6236100480530 /* WeatherMapView.swift */,
+				FA788E1929C7B1A30093F44F /* StormReports.swift */,
+				FA788E1F29C7D8350093F44F /* StormReports.Report.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -151,10 +168,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA788E1A29C7B1A30093F44F /* StormReports.swift in Sources */,
 				FA57E6C229C6236100480530 /* WeatherMapView.swift in Sources */,
 				FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */,
+				FA788E1E29C7B7520093F44F /* MKCoordinateRegionExtensions.swift in Sources */,
 				FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */,
 				FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */,
+				FA788E2029C7D8350093F44F /* StormReports.Report.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

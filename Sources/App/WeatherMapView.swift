@@ -126,6 +126,11 @@ class WeatherMapView : UIView, MKMapViewDelegate
 			// TODO: Remove `if let` once we have all states handled.
 			self.mapView.addOverlay(newOverlay, level: .aboveLabels)
 		}
+		
+		if case .stormReportsPoints = self.layerState {
+			let stormReports = StormReports(region: self.mapView.region)
+			print("stormReports.reports.count: \(stormReports.reports.count)")
+		}
 	}
 	
 	func mapView(_: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
