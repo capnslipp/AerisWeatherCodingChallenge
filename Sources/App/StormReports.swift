@@ -26,7 +26,8 @@ public class StormReports
 		do {
 			print("region: \(region)")
 			let endpointQueryArgs: [String : CustomStringConvertible] = [
-				"p": [ region.northernLatitude, region.westernLongitude, region.southernLatitude, region.easternLongitude ].map{ "\($0)" }.joined(separator: ","),
+				"p": [ region.northernLatitude, region.westernLongitude, region.southernLatitude, region.easternLongitude ]
+					.map{ "\($0, format: "%.4f")" }.joined(separator: ","),
 				"format": "geojson",
 				"from": "-12hours",
 				"limit": 250,
