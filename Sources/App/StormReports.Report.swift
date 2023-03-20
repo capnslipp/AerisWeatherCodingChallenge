@@ -45,6 +45,22 @@ extension StormReports
 }
 
 
+extension StormReports.Report : MKAnnotation
+{
+	public var coordinate: CLLocationCoordinate2D { self.geometry.first!.coordinate }
+	
+	public var title: String? { "\(self.type)".capitalized }
+	
+	public var subtitle: String? {
+		var subtitle = self.name
+		if let comments {
+			subtitle += " — \(comments)"
+		}
+		return subtitle
+	}
+}
+
+
 extension StormReports.Report
 {
 	public struct Properties : Decodable
