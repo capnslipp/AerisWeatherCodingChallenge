@@ -13,6 +13,8 @@
 		FA788E2029C7D8350093F44F /* StormReports.Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E1F29C7D8350093F44F /* StormReports.Report.swift */; };
 		FA788E2229C7FB540093F44F /* StormReports.AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E2129C7FB540093F44F /* StormReports.AnnotationView.swift */; };
 		FA788E2D29C8DA8D0093F44F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */; };
+		FA788E8829C9010B0093F44F /* DTMHeatmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA788E8729C9007D0093F44F /* DTMHeatmap.framework */; };
+		FA788E8929C9010B0093F44F /* DTMHeatmap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA788E8729C9007D0093F44F /* DTMHeatmap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81529C5D3120075A72B /* AppDelegate.swift */; };
 		FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81729C5D3120075A72B /* SceneDelegate.swift */; };
 		FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* MapViewController.swift */; };
@@ -20,6 +22,30 @@
 		FAD3B81F29C5D3160075A72B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAD3B81E29C5D3160075A72B /* Assets.xcassets */; };
 		FAD3B82229C5D3160075A72B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAD3B82029C5D3160075A72B /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FA788E8629C9007D0093F44F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA788E8229C9007D0093F44F /* DTMHeatmap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2E82320E1FE5C12700332ACF;
+			remoteInfo = DTMHeatmap;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA788E7E29C8FDB60093F44F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA788E8929C9010B0093F44F /* DTMHeatmap.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		FA57E6C129C6236100480530 /* WeatherMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapView.swift; sourceTree = "<group>"; };
@@ -29,6 +55,7 @@
 		FA788E1F29C7D8350093F44F /* StormReports.Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormReports.Report.swift; sourceTree = "<group>"; };
 		FA788E2129C7FB540093F44F /* StormReports.AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormReports.AnnotationView.swift; sourceTree = "<group>"; };
 		FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		FA788E8229C9007D0093F44F /* DTMHeatmap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTMHeatmap.xcodeproj; path = DTMHeatmap/DTMHeatmap.xcodeproj; sourceTree = "<group>"; };
 		FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AerisWeatherCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD3B81529C5D3120075A72B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD3B81729C5D3120075A72B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA788E8829C9010B0093F44F /* DTMHeatmap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,11 +87,36 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		FA788E2E29C8FD180093F44F /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				FA788E8229C9007D0093F44F /* DTMHeatmap.xcodeproj */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		FA788E7B29C8FDB60093F44F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA788E8329C9007D0093F44F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FA788E8729C9007D0093F44F /* DTMHeatmap.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		FAD3B80929C5D3110075A72B = {
 			isa = PBXGroup;
 			children = (
 				FAD3B82929C5D8500075A72B /* Sources */,
+				FA788E2E29C8FD180093F44F /* Libraries */,
 				FAD3B81329C5D3120075A72B /* Products */,
+				FA788E7B29C8FDB60093F44F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -113,6 +166,7 @@
 				FAD3B80E29C5D3120075A72B /* Sources */,
 				FAD3B80F29C5D3120075A72B /* Frameworks */,
 				FAD3B81029C5D3120075A72B /* Resources */,
+				FA788E7E29C8FDB60093F44F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -149,12 +203,28 @@
 			mainGroup = FAD3B80929C5D3110075A72B;
 			productRefGroup = FAD3B81329C5D3120075A72B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = FA788E8329C9007D0093F44F /* Products */;
+					ProjectRef = FA788E8229C9007D0093F44F /* DTMHeatmap.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				FAD3B81129C5D3120075A72B /* App */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		FA788E8729C9007D0093F44F /* DTMHeatmap.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DTMHeatmap.framework;
+			remoteRef = FA788E8629C9007D0093F44F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		FAD3B81029C5D3120075A72B /* Resources */ = {
