@@ -123,23 +123,23 @@ extension StormReports.Report
 			
 			public var cat: Cat
 			public enum Cat : String, Decodable {
-				case avalanche = "avalanche"
-				case blizzard = "blizzard"
-				case dust = "dust"
-				case fire = "fire"
-				case flood = "flood"
-				case fog = "fog"
-				case hail = "hail"
-				case ice = "ice"
-				case lightning = "lightning"
-				case marine = "marine"
-				case rain = "rain"
-				case snow = "snow"
-				case tides = "tides"
-				case tornado = "tornado"
-				case tropical = "tropical"
-				case wind = "wind"
-				case other = "other"
+				case avalanche
+				case blizzard
+				case dust
+				case fire
+				case flood
+				case fog
+				case hail
+				case ice
+				case lightning
+				case marine
+				case rain
+				case snow
+				case tides
+				case tornado
+				case tropical
+				case wind
+				case other
 			}
 		}
 	}

@@ -14,26 +14,51 @@ extension StormReports
 {
 	public class AnnotationView : MKAnnotationView
 	{
-		public override init(annotation: MKAnnotation?, reuseIdentifier: String?)
-		{
+		enum Error : Swift.Error {
+			case annotationIsNotAStormReport
+		}
+		
+		
+		public override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
 			super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+		}
+		
+		required init?(coder aDecoder: NSCoder) {
+			fatalError("init(coder:) has not been implemented")
+		}
+		
+		
+		var inDarkMode: Bool { self.traitCollection.userInterfaceStyle == .dark }
+		
+		public func configureForStormReport() throws
+		{
+			guard let report = self.annotation as? Report else {
+				throw Error.annotationIsNotAStormReport
+			}
 			
 			self.frame = CGRect(origin: self.frame.origin, size: CGSize(width: 10, height: 10))
 			
 			func style(caLayer: CALayer) {
-				caLayer.backgroundColor = UIColor(hue: 210.0 / 360, saturation: 1.0, brightness: 1.0, alpha: 1.0).cgColor
+				let baseColor = report.category.annotationBaseColor
+				let borderColor = self.inDarkMode ? baseColor.lightened() : baseColor.darkened()
+				
+				caLayer.backgroundColor = baseColor.cgColor
 				caLayer.cornerRadius = 5
 				caLayer.borderWidth = 1.0
-				caLayer.borderColor = UIColor(hue: 210.0 / 360, saturation: 1.0, brightness: 0.8, alpha: 1.0).cgColor
+				caLayer.borderColor = borderColor.cgColor
 			}
 			style(caLayer: self.layer)
 			
 			self.canShowCallout = true
 		}
-		
-		
-		required init?(coder aDecoder: NSCoder) {
-			fatalError("init(coder:) has not been implemented")
-		}
+	}
+}
+
+
+
+extension StormReports.Report.Properties.Report.Cat
+{
+	var annotationBaseColor: UIColor {
+		return UIColor(named: "StormReportAnnotation_\(self.rawValue)")!
 	}
 }

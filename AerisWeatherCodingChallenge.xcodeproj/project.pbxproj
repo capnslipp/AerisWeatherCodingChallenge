@@ -12,6 +12,7 @@
 		FA788E1E29C7B7520093F44F /* MKCoordinateRegionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E1D29C7B7520093F44F /* MKCoordinateRegionExtensions.swift */; };
 		FA788E2029C7D8350093F44F /* StormReports.Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E1F29C7D8350093F44F /* StormReports.Report.swift */; };
 		FA788E2229C7FB540093F44F /* StormReports.AnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E2129C7FB540093F44F /* StormReports.AnnotationView.swift */; };
+		FA788E2D29C8DA8D0093F44F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */; };
 		FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81529C5D3120075A72B /* AppDelegate.swift */; };
 		FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81729C5D3120075A72B /* SceneDelegate.swift */; };
 		FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* MapViewController.swift */; };
@@ -27,6 +28,7 @@
 		FA788E1D29C7B7520093F44F /* MKCoordinateRegionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKCoordinateRegionExtensions.swift; sourceTree = "<group>"; };
 		FA788E1F29C7D8350093F44F /* StormReports.Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormReports.Report.swift; sourceTree = "<group>"; };
 		FA788E2129C7FB540093F44F /* StormReports.AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormReports.AnnotationView.swift; sourceTree = "<group>"; };
+		FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AerisWeatherCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD3B81529C5D3120075A72B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD3B81729C5D3120075A72B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				FA788E1D29C7B7520093F44F /* MKCoordinateRegionExtensions.swift */,
+				FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA788E2D29C8DA8D0093F44F /* UIColorExtensions.swift in Sources */,
 				FA788E1A29C7B1A30093F44F /* StormReports.swift in Sources */,
 				FA57E6C229C6236100480530 /* WeatherMapView.swift in Sources */,
 				FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */,

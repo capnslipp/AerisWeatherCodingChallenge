@@ -137,6 +137,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		
 		if case .stormReportsPoints = self.layerState {
 			let stormReports = StormReports(region: _mkMapView.region)
+			print("stormReports.reports.count: \(stormReports.reports.count)")
 			_mkMapView.addAnnotations(stormReports.reports)
 		}
 	}
@@ -161,8 +162,12 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	
 	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
 	{
-		let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Self.stormReportsAnnotationViewReuseIdentifier, for: annotation)
-		return annotationView
+		if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Self.stormReportsAnnotationViewReuseIdentifier, for: annotation) as? StormReports.AnnotationView {
+			try! annotationView.configureForStormReport()
+			return annotationView
+		}
+		
+		return nil
 	}
 }
 
