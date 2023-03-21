@@ -16,6 +16,7 @@
 		FA788E8829C9010B0093F44F /* DTMHeatmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA788E8729C9007D0093F44F /* DTMHeatmap.framework */; };
 		FA788E8929C9010B0093F44F /* DTMHeatmap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA788E8729C9007D0093F44F /* DTMHeatmap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA788E8F29C918900093F44F /* StringInterpolationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E8E29C918900093F44F /* StringInterpolationExtensions.swift */; };
+		FA900E1929C937200084CFBE /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = FA900E1829C937200084CFBE /* Collections */; };
 		FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81529C5D3120075A72B /* AppDelegate.swift */; };
 		FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81729C5D3120075A72B /* SceneDelegate.swift */; };
 		FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* MapViewController.swift */; };
@@ -73,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA900E1929C937200084CFBE /* Collections in Frameworks */,
 				FA788E8829C9010B0093F44F /* DTMHeatmap.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,6 +178,9 @@
 			dependencies = (
 			);
 			name = App;
+			packageProductDependencies = (
+				FA900E1829C937200084CFBE /* Collections */,
+			);
 			productName = AerisWeatherCodingChallenge;
 			productReference = FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */;
 			productType = "com.apple.product-type.application";
@@ -204,6 +209,9 @@
 				Base,
 			);
 			mainGroup = FAD3B80929C5D3110075A72B;
+			packageReferences = (
+				FA900E1529C936D20084CFBE /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = FAD3B81329C5D3120075A72B /* Products */;
 			projectDirPath = "";
 			projectReferences = (
@@ -482,6 +490,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA900E1529C936D20084CFBE /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA900E1829C937200084CFBE /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA900E1529C936D20084CFBE /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FAD3B80A29C5D3110075A72B /* Project object */;
 }
