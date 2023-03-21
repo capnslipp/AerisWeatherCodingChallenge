@@ -75,6 +75,8 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	}
 	
 	
+	lazy var _stormReports = StormReports()
+	
 	
 	static let stormReportsAnnotationViewReuseIdentifier = "StormReportsAnnotationView"
 	
@@ -122,22 +124,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		return renderer
 	}()
 	
-	lazy var heatmapLayerOverlay: DTMHeatmap = {
-		let heatmap = DTMHeatmap()
-		heatmap.setData({
-			let stormReports = StormReports(region: _mkMapView.region)
-			let reports = stormReports.reports
-			let heatmapData = reports.reduce(into: [MKMapPoint:Double](minimumCapacity: reports.count)) { heatmapData, report in
-				heatmapData[MKMapPoint(report.coordinate)] = 1.0
-			}
-			let heatmapData_objc = Dictionary(
-				heatmapData.map{ (key: NSValue(mkMapPoint: $0), value: $1 ) },
-				uniquingKeysWith: { $1 }
-			)
-			return heatmapData_objc
-		}())
-		return heatmap
-	}()
+	lazy var heatmapLayerOverlay: DTMHeatmap = DTMHeatmap()
 	lazy var heatmapLayerOverlayRenderer: DTMHeatmapRenderer = {
 		let renderer = DTMHeatmapRenderer(overlay: self.heatmapLayerOverlay)
 		#if !targetEnvironment(macCatalyst)
@@ -205,9 +192,25 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		_currentAnnotations = []
 		
 		if case .stormReportsPoints = self.layerState {
-			let stormReports = StormReports(region: _mkMapView.region)
-			print("stormReports.reports.count: \(stormReports.reports.count)")
-			_currentAnnotations.append(contentsOf: stormReports.reports.map(MKAnnotation_Box.init))
+		}
+		
+		if case .stormReportsHeatmap = self.layerState {
+			_stormReports.refreshReports(inRegion: _mkMapView.region) { [weak self] reports in
+				self?.heatmapLayerOverlay.setData({
+					let heatmapData = reports.reduce(into: [MKMapPoint:Double](minimumCapacity: reports.count)) { heatmapData, report in
+						heatmapData[MKMapPoint(report.coordinate)] = 1.0
+					}
+					let heatmapData_objc = Dictionary(
+						heatmapData.map{ (key: NSValue(mkMapPoint: $0), value: $1 ) },
+						uniquingKeysWith: { $1 }
+					)
+					return heatmapData_objc
+				}())
+			}
+		} else if case .stormReportsPoints = self.layerState {
+			_stormReports.refreshReports(inRegion: _mkMapView.region) { [weak self] reports in
+				self?._currentAnnotations.append(contentsOf: reports.map(MKAnnotation_Box.init))
+			}
 		}
 	}
 	
