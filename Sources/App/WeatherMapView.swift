@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import DTMHeatmap
+import Collections
 
 
 
@@ -30,6 +31,50 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	
 	
 	private var _mkMapView: MKMapView!
+	
+	private var _currentBaseOverlay: MKOverlay_Box? {
+		didSet(old) {
+			if let old {
+				_mkMapView.removeOverlay(old.value)
+			}
+			if let new = _currentBaseOverlay {
+				_mkMapView.insertOverlay(new.value, at: 0, level: .aboveLabels)
+			}
+		}
+	}
+	
+	private var _currentLayerOverlays: OrderedSet<MKOverlay_Box> {
+		get {
+			OrderedSet(_mkMapView.overlays.map(MKOverlay_Box.init))
+				.subtracting([ _currentBaseOverlay ].compactMap{ $0 })
+		}
+		set(new) {
+			let current = _currentLayerOverlays
+			
+			let removed = current.subtracting(new)
+			_mkMapView.removeOverlays(removed.map{ $0.value })
+			
+			let additional = new.subtracting(current)
+			_mkMapView.addOverlays(additional.map{ $0.value }, level: .aboveLabels)
+		}
+	}
+	
+	private var _currentAnnotations: OrderedSet<MKAnnotation_Box> {
+		get {
+			OrderedSet(_mkMapView.annotations.map(MKAnnotation_Box.init))
+		}
+		set(new) {
+			let current = _currentAnnotations
+			
+			let removed = current.subtracting(new)
+			_mkMapView.removeAnnotations(removed.map{ $0.value })
+			
+			let additional = new.subtracting(current)
+			_mkMapView.addAnnotations(additional.map{ $0.value })
+		}
+	}
+	
+	
 	
 	static let stormReportsAnnotationViewReuseIdentifier = "StormReportsAnnotationView"
 	
@@ -122,24 +167,23 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	
 	func setUpBaseOverlay()
 	{
-		_mkMapView.addOverlay(self.baseOverlay, level: .aboveLabels)
+		_currentBaseOverlay = MKOverlay_Box(self.baseOverlay)
 	}
 	
 	func setUpOverlaysForCurrentLayerState()
 	{
-		_mkMapView.removeOverlays(self.allLayerOverlays)
+		_currentLayerOverlays = []
 		
 		if let newOverlay = layerOverlay(forLayerState: self.layerState) {
-			// TODO: Remove `if let` once we have all states handled.
-			_mkMapView.addOverlay(newOverlay, level: .aboveLabels)
+			_currentLayerOverlays.append(MKOverlay_Box(newOverlay))
 		}
 		
-		_mkMapView.removeAllAnnotation()
+		_currentAnnotations = []
 		
 		if case .stormReportsPoints = self.layerState {
 			let stormReports = StormReports(region: _mkMapView.region)
 			print("stormReports.reports.count: \(stormReports.reports.count)")
-			_mkMapView.addAnnotations(stormReports.reports)
+			_currentAnnotations.append(contentsOf: stormReports.reports.map(MKAnnotation_Box.init))
 		}
 	}
 	
@@ -177,13 +221,6 @@ class WeatherMapView : UIView, MKMapViewDelegate
 /// `MKOverlay` ↔ `WeatherMapView.LayerState` Convenience Methods
 extension WeatherMapView
 {
-	var allLayerOverlays: [MKOverlay] {
-		[
-			self.radarLayerOverlay,
-			self.alertsLayerOverlay,
-		]
-	}
-	
 	func layerOverlay(forLayerState state: LayerState) -> MKOverlay? {
 		switch state {
 			case .radar:
@@ -204,18 +241,5 @@ extension WeatherMapView
 			
 			default: return nil
 		}
-	}
-}
-
-
-
-extension MKMapView
-{
-	func removeAllAnnotation() {
-		removeAnnotations(self.annotations)
-	}
-	
-	func removeAllOverlays() {
-		removeOverlays(self.overlays)
 	}
 }
