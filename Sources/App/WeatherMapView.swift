@@ -80,71 +80,36 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	
 	var inDarkMode: Bool { self.traitCollection.userInterfaceStyle == .dark }
 	
-	lazy var baseOverlay: MKTileOverlay = {
-		let apiKey = "576c3abd-74af-419b-91d6-847b6e17ce38"
-		let styleID = self.inDarkMode ? "alidade_smooth_dark" : "alidade_smooth"
-		let overlay = MKTileOverlay(urlTemplate: "https://tiles.stadiamaps.com/tiles/\(styleID)/{z}/{x}/{y}.png?api_key=\(apiKey)")
-		overlay.canReplaceMapContent = true
-		return overlay
-	}()
-	lazy var baseOverlayRenderer: MKTileOverlayRenderer = {
-		let renderer = MKTileOverlayRenderer(tileOverlay: self.baseOverlay)
-		return renderer
-	}()
 	
-	lazy var radarLayerOverlay: MKTileOverlay = {
-		let clientID = "mDDQDYPbqq4PK43usr9HJ"
-		let clientSecret = "nEyhFtwTSaCkBDKLpppDEOePPh1qw5qaeyuxYal6"
-		let overlay = MKTileOverlay(urlTemplate: "https://maps.aerisapi.com/\(clientID)_\(clientSecret)/radar/{z}/{x}/{y}/current.png")
-		overlay.canReplaceMapContent = false
-		return overlay
-	}()
-	lazy var radarLayerOverlayRenderer: MKTileOverlayRenderer = {
-		let renderer = MKTileOverlayRenderer(tileOverlay: self.radarLayerOverlay)
-		#if !targetEnvironment(macCatalyst)
-			renderer.blendMode = self.inDarkMode ? .screen : .multiply
-		#endif
-		return renderer
-	}()
-	
-	lazy var alertsLayerOverlay: MKTileOverlay = {
-		let clientID = "mDDQDYPbqq4PK43usr9HJ"
-		let clientSecret = "nEyhFtwTSaCkBDKLpppDEOePPh1qw5qaeyuxYal6"
-		let overlay = MKTileOverlay(urlTemplate: "https://maps.aerisapi.com/\(clientID)_\(clientSecret)/alerts/{z}/{x}/{y}/current.png")
-		overlay.canReplaceMapContent = false
-		return overlay
-	}()
-	lazy var alertsLayerOverlayRenderer: MKTileOverlayRenderer = {
-		let renderer = MKTileOverlayRenderer(tileOverlay: self.alertsLayerOverlay)
-		#if !targetEnvironment(macCatalyst)
-			renderer.blendMode = self.inDarkMode ? .screen : .multiply
-		#endif
-		return renderer
-	}()
-	
-	lazy var heatmapLayerOverlay: DTMHeatmap = {
-		let heatmap = DTMHeatmap()
-		heatmap.setData({
-			let stormReports = StormReports(region: _mkMapView.region)
-			let reports = stormReports.reports
-			let heatmapData = reports.reduce(into: [MKMapPoint:Double](minimumCapacity: reports.count)) { heatmapData, report in
-				heatmapData[MKMapPoint(report.coordinate)] = 1.0
+	public var baseLayer: (any WeatherMapLayer)? {
+		willSet {
+			_currentBaseOverlay = nil
+		}
+		didSet {
+			if let layer = self.baseLayer, let overlay = layer.overlay {
+				_currentBaseOverlay = MKOverlay_Box(overlay)
 			}
-			let heatmapData_objc = Dictionary(
-				heatmapData.map{ (key: NSValue(mkMapPoint: $0), value: $1 ) },
-				uniquingKeysWith: { $1 }
-			)
-			return heatmapData_objc
-		}())
-		return heatmap
-	}()
-	lazy var heatmapLayerOverlayRenderer: DTMHeatmapRenderer = {
-		let renderer = DTMHeatmapRenderer(overlay: self.heatmapLayerOverlay)
-		#if !targetEnvironment(macCatalyst)
-			renderer.blendMode = self.inDarkMode ? .screen : .multiply
-		#endif
-		return renderer
-	}()
+		}
+	}
+	
+	public var overlayLayers: [any WeatherMapLayer] {
+		willSet {
+			_currentLayerOverlays = []
+			_currentAnnotations = []
+		}
+		didSet {
+			for layer in self.overlayLayers {
+				if let overlay = layer.overlay {
+					_currentLayerOverlays.append(MKOverlay_Box(overlay))
+				}
+			}
+			for layer in self.overlayLayers {
+				if let annotations = layer.annotations {
+					_currentAnnotations.append(contentsOf: annotations.map(MKAnnotation_Box.init))
+				}
+			}
+		}
+	}
 	
 	
 	public override init(frame: CGRect)
@@ -152,8 +117,6 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		super.init(frame: frame)
 		
 		setUpSubviews()
-		setUpBaseOverlay()
-		setUpOverlaysForCurrentLayerState()
 	}
 	
 	/// Used by UIKit when unarchiving from a NIB/XIB/Storyboard.
@@ -162,8 +125,6 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		super.init(coder: coder)
 		
 		setUpSubviews()
-		setUpBaseOverlay()
-		setUpOverlaysForCurrentLayerState()
 	}
 	
 	func setUpSubviews()
@@ -189,50 +150,45 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		}()
 	}
 	
-	func setUpBaseOverlay()
+	func mapView(_: MKMapView, rendererFor givenOverlay: MKOverlay) -> MKOverlayRenderer
 	{
-		_currentBaseOverlay = MKOverlay_Box(self.baseOverlay)
+		let givenOverlay = MKOverlay_Box(givenOverlay)
+		
+		if let baseLayer, let baseLayerOverlay = baseLayer.overlay {
+			if givenOverlay == MKOverlay_Box(baseLayerOverlay) {
+				if let renderer = baseLayer.overlayRenderer {
+					return renderer
+				}
+			}
+		}
+		
+		if let layer = overlayLayers.first(where: {
+			guard let layerOverlay = $0.overlay else { return false }
+			return givenOverlay == MKOverlay_Box(layerOverlay)
+		}) {
+			if let renderer = layer.overlayRenderer {
+				return renderer
+			}
+		}
+		
+		print("Warning: \(#function) ignoring unhandled overlay \(givenOverlay).")
+		return MKPolygonRenderer(polygon: MKPolygon(points: [], count: 0))
 	}
 	
-	func setUpOverlaysForCurrentLayerState()
+	func mapView(_ mapView: MKMapView, viewFor givenAnnotation: MKAnnotation) -> MKAnnotationView?
 	{
-		_currentLayerOverlays = []
+		let givenAnnotation = MKAnnotation_Box(givenAnnotation)
 		
-		if let newOverlay = layerOverlay(forLayerState: self.layerState) {
-			_currentLayerOverlays.append(MKOverlay_Box(newOverlay))
+		if let baseLayer, let baseLayerAnnotations = baseLayer.annotations {
+			if let annotations = baseLayer.annotations {
+				if annotations.map(MKAnnotation_Box.init).contains(givenAnnotation) {
+					if let renderer = baseLayer.overlayRenderer {
+						return renderer
+					}
+				}
+			}
 		}
 		
-		_currentAnnotations = []
-		
-		if case .stormReportsPoints = self.layerState {
-			let stormReports = StormReports(region: _mkMapView.region)
-			print("stormReports.reports.count: \(stormReports.reports.count)")
-			_currentAnnotations.append(contentsOf: stormReports.reports.map(MKAnnotation_Box.init))
-		}
-	}
-	
-	func mapView(_: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
-	{
-		if (overlay as? MKTileOverlay) == self.baseOverlay {
-			return self.baseOverlayRenderer
-		}
-		
-		switch layerState(forLayerOverlay: overlay) {
-			case .radar:
-				return self.radarLayerOverlayRenderer
-			case .alerts:
-				return self.alertsLayerOverlayRenderer
-			case .stormReportsHeatmap:
-				return self.heatmapLayerOverlayRenderer
-			
-			default:
-				print("Warning: \(#function) ignoring unhandled overlay \(overlay).")
-				return MKPolygonRenderer(polygon: MKPolygon(points: [], count: 0))
-		}
-	}
-	
-	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
-	{
 		if let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: Self.stormReportsAnnotationViewReuseIdentifier, for: annotation) as? StormReports.AnnotationView {
 			try! annotationView.configureForStormReport()
 			return annotationView
