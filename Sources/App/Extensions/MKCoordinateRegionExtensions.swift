@@ -12,16 +12,24 @@ import MapKit
 extension MKCoordinateRegion
 {
 	public var northernLatitude: CLLocationDegrees {
-		self.center.latitude + (self.span.latitudeDelta * 0.5)
+		var degrees = self.center.latitude + (self.span.latitudeDelta * 0.5)
+		degrees = min(degrees, 90) // clamp to north pole
+		return degrees
 	}
 	public var southernLatitude: CLLocationDegrees {
-		self.center.latitude - (self.span.latitudeDelta * 0.5)
+		var degrees = self.center.latitude - (self.span.latitudeDelta * 0.5)
+		degrees = max(degrees, -90) // clamp to south pole
+		return degrees
 	}
 	
 	public var westernLongitude: CLLocationDegrees {
-		self.center.longitude - (self.span.longitudeDelta * 0.5)
+		var degrees = self.center.longitude - (self.span.longitudeDelta * 0.5)
+		degrees.formRemainder(dividingBy: 360)
+		return degrees
 	}
 	public var easternLongitude: CLLocationDegrees {
-		self.center.longitude + (self.span.longitudeDelta * 0.5)
+		var degrees = self.center.longitude + (self.span.longitudeDelta * 0.5)
+		degrees.formRemainder(dividingBy: 360)
+		return degrees
 	}
 }
