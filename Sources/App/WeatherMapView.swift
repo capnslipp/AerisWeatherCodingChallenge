@@ -83,9 +83,8 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	var inDarkMode: Bool { self.traitCollection.userInterfaceStyle == .dark }
 	
 	lazy var baseOverlay: MKTileOverlay = {
-		let apiKey = "576c3abd-74af-419b-91d6-847b6e17ce38"
 		let styleID = self.inDarkMode ? "alidade_smooth_dark" : "alidade_smooth"
-		let overlay = MKTileOverlay(urlTemplate: "https://tiles.stadiamaps.com/tiles/\(styleID)/{z}/{x}/{y}.png?api_key=\(apiKey)")
+		let overlay = MKTileOverlay(urlTemplate: "https://tiles.stadiamaps.com/tiles/\(styleID)/{z}/{x}/{y}.png?api_key=\(Secrets.StadiaMapsAPIKey)")
 		overlay.canReplaceMapContent = true
 		return overlay
 	}()
@@ -95,9 +94,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	}()
 	
 	lazy var radarLayerOverlay: MKTileOverlay = {
-		let clientID = "mDDQDYPbqq4PK43usr9HJ"
-		let clientSecret = "nEyhFtwTSaCkBDKLpppDEOePPh1qw5qaeyuxYal6"
-		let overlay = MKTileOverlay(urlTemplate: "https://maps.aerisapi.com/\(clientID)_\(clientSecret)/radar/{z}/{x}/{y}/current.png")
+		let overlay = MKTileOverlay(urlTemplate: "https://maps.aerisapi.com/\(Secrets.AerisWeatherClientID)_\(Secrets.AerisWeatherClientSecret)/radar/{z}/{x}/{y}/current.png")
 		overlay.canReplaceMapContent = false
 		return overlay
 	}()
@@ -112,7 +109,7 @@ class WeatherMapView : UIView, MKMapViewDelegate
 	lazy var alertsLayerOverlay: MKTileOverlay = {
 		let clientID = "mDDQDYPbqq4PK43usr9HJ"
 		let clientSecret = "nEyhFtwTSaCkBDKLpppDEOePPh1qw5qaeyuxYal6"
-		let overlay = MKTileOverlay(urlTemplate: "https://maps.aerisapi.com/\(clientID)_\(clientSecret)/alerts/{z}/{x}/{y}/current.png")
+		let overlay = MKTileOverlay(urlTemplate: "https://maps.aerisapi.com/\(Secrets.AerisWeatherClientID)_\(Secrets.AerisWeatherClientSecret)/alerts/{z}/{x}/{y}/current.png")
 		overlay.canReplaceMapContent = false
 		return overlay
 	}()

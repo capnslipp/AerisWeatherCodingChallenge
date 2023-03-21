@@ -20,6 +20,7 @@
 		FA900E1329C933A80084CFBE /* MKOverlayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA900E1229C933A80084CFBE /* MKOverlayExtensions.swift */; };
 		FA900E1929C937200084CFBE /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = FA900E1829C937200084CFBE /* Collections */; };
 		FA900E1B29C93D330084CFBE /* MKAnnotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA900E1A29C93D330084CFBE /* MKAnnotationExtensions.swift */; };
+		FAAE01BE29CA14B60033697D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE01BD29CA14B60033697D /* Secrets.swift */; };
 		FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81529C5D3120075A72B /* AppDelegate.swift */; };
 		FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81729C5D3120075A72B /* SceneDelegate.swift */; };
 		FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* MapViewController.swift */; };
@@ -65,6 +66,7 @@
 		FA788E8E29C918900093F44F /* StringInterpolationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringInterpolationExtensions.swift; sourceTree = "<group>"; };
 		FA900E1229C933A80084CFBE /* MKOverlayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKOverlayExtensions.swift; sourceTree = "<group>"; };
 		FA900E1A29C93D330084CFBE /* MKAnnotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKAnnotationExtensions.swift; sourceTree = "<group>"; };
+		FAAE01BD29CA14B60033697D /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AerisWeatherCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD3B81529C5D3120075A72B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD3B81729C5D3120075A72B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				FA788E1929C7B1A30093F44F /* StormReports.swift */,
 				FA788E1F29C7D8350093F44F /* StormReports.Report.swift */,
 				FA788E2129C7FB540093F44F /* StormReports.AnnotationView.swift */,
+				FAAE01BD29CA14B60033697D /* Secrets.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				FA788E1E29C7B7520093F44F /* MKCoordinateRegionExtensions.swift in Sources */,
 				FA788E2229C7FB540093F44F /* StormReports.AnnotationView.swift in Sources */,
 				FA900E1329C933A80084CFBE /* MKOverlayExtensions.swift in Sources */,
+				FAAE01BE29CA14B60033697D /* Secrets.swift in Sources */,
 				FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */,
 				FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */,
 				FA900E1B29C93D330084CFBE /* MKAnnotationExtensions.swift in Sources */,

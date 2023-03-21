@@ -37,8 +37,8 @@ public class StormReports
 			"format": "geojson",
 			"from": "-12hours",
 			"limit": 250,
-			"client_id": "mDDQDYPbqq4PK43usr9HJ",
-			"client_secret": "nEyhFtwTSaCkBDKLpppDEOePPh1qw5qaeyuxYal6",
+			"client_id": Secrets.AerisWeatherClientID,
+			"client_secret": Secrets.AerisWeatherClientSecret,
 		]
 		let endpointURL = URL(string: "https://api.aerisapi.com/stormreports/within")!.appending(
 			queryItems: endpointQueryArgs.mapValues{ "\($0)" }.map(URLQueryItem.init)
