@@ -122,6 +122,30 @@ class WeatherMapView : UIView, MKMapViewDelegate
 		return renderer
 	}()
 	
+	lazy var heatmapLayerOverlay: DTMHeatmap = {
+		let heatmap = DTMHeatmap()
+		heatmap.setData({
+			let stormReports = StormReports(region: _mkMapView.region)
+			let reports = stormReports.reports
+			let heatmapData = reports.reduce(into: [MKMapPoint:Double](minimumCapacity: reports.count)) { heatmapData, report in
+				heatmapData[MKMapPoint(report.coordinate)] = 1.0
+			}
+			let heatmapData_objc = Dictionary(
+				heatmapData.map{ (key: NSValue(mkMapPoint: $0), value: $1 ) },
+				uniquingKeysWith: { $1 }
+			)
+			return heatmapData_objc
+		}())
+		return heatmap
+	}()
+	lazy var heatmapLayerOverlayRenderer: DTMHeatmapRenderer = {
+		let renderer = DTMHeatmapRenderer(overlay: self.heatmapLayerOverlay)
+		#if !targetEnvironment(macCatalyst)
+			renderer.blendMode = self.inDarkMode ? .screen : .multiply
+		#endif
+		return renderer
+	}()
+	
 	
 	public override init(frame: CGRect)
 	{
@@ -198,6 +222,8 @@ class WeatherMapView : UIView, MKMapViewDelegate
 				return self.radarLayerOverlayRenderer
 			case .alerts:
 				return self.alertsLayerOverlayRenderer
+			case .stormReportsHeatmap:
+				return self.heatmapLayerOverlayRenderer
 			
 			default:
 				print("Warning: \(#function) ignoring unhandled overlay \(overlay).")
@@ -227,8 +253,10 @@ extension WeatherMapView
 				return self.radarLayerOverlay
 			case .alerts:
 				return self.alertsLayerOverlay
-			
-			default: return nil
+			case .stormReportsPoints:
+				return nil
+			case .stormReportsHeatmap:
+				return self.heatmapLayerOverlay
 		}
 	}
 	
@@ -238,6 +266,8 @@ extension WeatherMapView
 				return .radar
 			case let tileOverlay as MKTileOverlay where tileOverlay == self.alertsLayerOverlay:
 				return .alerts
+			case let heatmapOverlay as DTMHeatmap where heatmapOverlay == self.heatmapLayerOverlay:
+				return .stormReportsHeatmap
 			
 			default: return nil
 		}

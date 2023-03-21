@@ -15,6 +15,7 @@
 		FA788E2D29C8DA8D0093F44F /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */; };
 		FA788E8829C9010B0093F44F /* DTMHeatmap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA788E8729C9007D0093F44F /* DTMHeatmap.framework */; };
 		FA788E8929C9010B0093F44F /* DTMHeatmap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA788E8729C9007D0093F44F /* DTMHeatmap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA788E8C29C90A040093F44F /* MKMapPointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E8B29C90A040093F44F /* MKMapPointExtensions.swift */; };
 		FA788E8F29C918900093F44F /* StringInterpolationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA788E8E29C918900093F44F /* StringInterpolationExtensions.swift */; };
 		FA900E1329C933A80084CFBE /* MKOverlayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA900E1229C933A80084CFBE /* MKOverlayExtensions.swift */; };
 		FA900E1929C937200084CFBE /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = FA900E1829C937200084CFBE /* Collections */; };
@@ -60,6 +61,7 @@
 		FA788E2129C7FB540093F44F /* StormReports.AnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StormReports.AnnotationView.swift; sourceTree = "<group>"; };
 		FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		FA788E8229C9007D0093F44F /* DTMHeatmap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DTMHeatmap.xcodeproj; path = DTMHeatmap/DTMHeatmap.xcodeproj; sourceTree = "<group>"; };
+		FA788E8B29C90A040093F44F /* MKMapPointExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapPointExtensions.swift; sourceTree = "<group>"; };
 		FA788E8E29C918900093F44F /* StringInterpolationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringInterpolationExtensions.swift; sourceTree = "<group>"; };
 		FA900E1229C933A80084CFBE /* MKOverlayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKOverlayExtensions.swift; sourceTree = "<group>"; };
 		FA900E1A29C93D330084CFBE /* MKAnnotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKAnnotationExtensions.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			children = (
 				FA788E1D29C7B7520093F44F /* MKCoordinateRegionExtensions.swift */,
 				FA788E2C29C8DA8D0093F44F /* UIColorExtensions.swift */,
+				FA788E8B29C90A040093F44F /* MKMapPointExtensions.swift */,
 				FA788E8E29C918900093F44F /* StringInterpolationExtensions.swift */,
 				FA900E1229C933A80084CFBE /* MKOverlayExtensions.swift */,
 				FA900E1A29C93D330084CFBE /* MKAnnotationExtensions.swift */,
@@ -265,6 +268,7 @@
 				FA788E1A29C7B1A30093F44F /* StormReports.swift in Sources */,
 				FA57E6C229C6236100480530 /* WeatherMapView.swift in Sources */,
 				FA788E8F29C918900093F44F /* StringInterpolationExtensions.swift in Sources */,
+				FA788E8C29C90A040093F44F /* MKMapPointExtensions.swift in Sources */,
 				FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */,
 				FA788E1E29C7B7520093F44F /* MKCoordinateRegionExtensions.swift in Sources */,
 				FA788E2229C7FB540093F44F /* StormReports.AnnotationView.swift in Sources */,
