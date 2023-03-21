@@ -21,6 +21,7 @@
 		FA900E1929C937200084CFBE /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = FA900E1829C937200084CFBE /* Collections */; };
 		FA900E1B29C93D330084CFBE /* MKAnnotationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA900E1A29C93D330084CFBE /* MKAnnotationExtensions.swift */; };
 		FAAE01BE29CA14B60033697D /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE01BD29CA14B60033697D /* Secrets.swift */; };
+		FAAE01C029CA16C20033697D /* SampleCode.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = FAAE01BF29CA16C20033697D /* SampleCode.xcconfig */; };
 		FAD3B81629C5D3120075A72B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81529C5D3120075A72B /* AppDelegate.swift */; };
 		FAD3B81829C5D3120075A72B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81729C5D3120075A72B /* SceneDelegate.swift */; };
 		FAD3B81A29C5D3120075A72B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD3B81929C5D3120075A72B /* MapViewController.swift */; };
@@ -67,6 +68,7 @@
 		FA900E1229C933A80084CFBE /* MKOverlayExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKOverlayExtensions.swift; sourceTree = "<group>"; };
 		FA900E1A29C93D330084CFBE /* MKAnnotationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKAnnotationExtensions.swift; sourceTree = "<group>"; };
 		FAAE01BD29CA14B60033697D /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		FAAE01BF29CA16C20033697D /* SampleCode.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = SampleCode.xcconfig; sourceTree = "<group>"; };
 		FAD3B81229C5D3120075A72B /* AerisWeatherCodingChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AerisWeatherCodingChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD3B81529C5D3120075A72B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAD3B81729C5D3120075A72B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 		FAD3B81429C5D3120075A72B /* App */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE01BF29CA16C20033697D /* SampleCode.xcconfig */,
 				FA788E1C29C7B73A0093F44F /* Extensions */,
 				FA5BDC1529C5DA5D000FC0AF /* App.entitlements */,
 				FAD3B81529C5D3120075A72B /* AppDelegate.swift */,
@@ -257,6 +260,7 @@
 				FAD3B82229C5D3160075A72B /* LaunchScreen.storyboard in Resources */,
 				FAD3B81F29C5D3160075A72B /* Assets.xcassets in Resources */,
 				FAD3B81D29C5D3120075A72B /* Main.storyboard in Resources */,
+				FAAE01C029CA16C20033697D /* SampleCode.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +312,7 @@
 /* Begin XCBuildConfiguration section */
 		FAD3B82429C5D3160075A72B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAAE01BF29CA16C20033697D /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -368,6 +373,7 @@
 		};
 		FAD3B82529C5D3160075A72B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAAE01BF29CA16C20033697D /* SampleCode.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -422,6 +428,7 @@
 		};
 		FAD3B82729C5D3160075A72B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAAE01BF29CA16C20033697D /* SampleCode.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -441,7 +448,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.slippyd.AerisWeatherCodingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.slippyd.AerisWeatherCodingChallenge.${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = AerisWeatherCodingChallenge;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
@@ -454,6 +461,7 @@
 		};
 		FAD3B82829C5D3160075A72B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FAAE01BF29CA16C20033697D /* SampleCode.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -473,7 +481,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.slippyd.AerisWeatherCodingChallenge;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.slippyd.AerisWeatherCodingChallenge.${SAMPLE_CODE_DISAMBIGUATOR}";
 				PRODUCT_NAME = AerisWeatherCodingChallenge;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = YES;
